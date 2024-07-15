@@ -1,0 +1,47 @@
+import telebot 
+
+import info 
+
+greeting = 'Приветствую тебя! Я бот визитка' 
+
+token = '' 
+
+bot = telebot.TeleBot(token) 
+
+ 
+
+@bot.message_handler(commands=['start']) 
+
+def start_command(message): 
+
+    bot.send_message(message.chat.id, greeting) 
+
+ 
+
+@bot.message_handler(commands=['info']) 
+
+def info_command(message): 
+
+    bot.send_message(message.chat.id, info.get_info()) 
+
+ 
+
+@bot.message_handler(commands=['help']) 
+
+def help_command(message): 
+
+    bot.send_message(message.chat.id, info.get_command()) 
+
+ 
+
+@bot.message_handler(commands=['photo']) 
+
+def photo_command(message): 
+
+    photo = open('photo_5474412461793859402_y.jpg', 'rb') 
+
+    bot.send_photo(message.chat.id, photo) 
+
+ 
+
+bot.polling() 
